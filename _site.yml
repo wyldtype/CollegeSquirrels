@@ -1,9 +1,9 @@
-name: "my-website"
+name: "college-squirrels"
 output_dir: docs
 navbar:
-  title: "My Website"
+  title: "Why do squirrels on college campuses look so weird?"
   left:
     - text: "Home"
       href: index.html
-    - text: "About"
-      href: about.html
+    - text: "Wright-Fisher Simulations"
+      href: WrightFisher.html
