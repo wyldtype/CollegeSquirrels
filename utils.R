@@ -5,7 +5,7 @@ updateFreq <- function(.N, .p) {
 
 wrightFisher <- function(.N, .p, .X = NULL, .g = 500, .g_now = 1) {
   .X_new <- cbind(.X, .p, deparse.level = 0)
-  if (.g_now == .g) {
+  if (.g_now >= .g) {
     return(.X_new)
   }
   .p_new <- updateFreq(.N = .N, .p = .p)

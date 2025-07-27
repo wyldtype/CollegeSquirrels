@@ -53,7 +53,7 @@ wrightFisher <- function(.N, .p, .X = NULL, .g = 500, .g_now = 1) {
   # Add previous generation's allele frequencies to X
   .X_new <- cbind(.X, .p, deparse.level = 0)
   # check if we're at the final generation
-  if (.g_now == .g) {
+  if (.g_now >= .g) {
     return(.X_new)
   }
   # if not, update allele freqs for the next generation

@@ -80,4 +80,30 @@ Saving these frequencies so they can be referenced permanently:
 # save(X_B, X_T, X_M, X_S, X_F, file = "Frequencies.RData")
 ```
 
+Visualizing example alleles in all 5 college populations:
+
+Example of an allele that remained segregating in most populations:
+```{r}
+sample_allele <- which(X_B[,200] == .22)
+plot(x = 1:g, y = X_B[sample_allele, ], type = "l", col = "#EE2C24",
+     xlab = "Generation", ylab = "allele frequency", ylim = c(0, 1),
+     main = paste("Locus", nrow(X_B) - sample_allele + 1))
+lines(x = 1:g, y = X_T[sample_allele, ], type = "l", col = "#CC6E28")
+lines(x = 1:g, y = X_M[sample_allele, ], type = "l", col = "#F7CE0E")
+lines(x = 1:g, y = X_S[sample_allele, ], type = "l", col = "#2300F6")
+lines(x = 1:g, y = X_F[sample_allele, ], type = "l", col = "#007C46")
+```
+
+Example of an allele that was lost from all but BU:
+```{r}
+sample_allele <- which(X_B[,200] == .16)
+plot(x = 1:g, y = X_B[sample_allele, ], type = "l", col = "#EE2C24",
+     xlab = "Generation", ylab = "allele frequency", ylim = c(0, 1),
+     main = paste("Locus", nrow(X_B) - sample_allele + 1))
+lines(x = 1:g, y = X_T[sample_allele, ], type = "l", col = "#CC6E28")
+lines(x = 1:g, y = X_M[sample_allele, ], type = "l", col = "#F7CE0E")
+lines(x = 1:g, y = X_S[sample_allele, ], type = "l", col = "#2300F6")
+lines(x = 1:g, y = X_F[sample_allele, ], type = "l", col = "#007C46")
+```
+
 

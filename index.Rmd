@@ -1,5 +1,5 @@
 ---
-title: "Why are college squirrels so weird?"
+title: "Why are college squirrels so wild-looking?"
 ---
 
 ```{r weird, echo=FALSE, fig.align="center", out.width = '50%'}

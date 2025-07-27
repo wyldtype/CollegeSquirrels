@@ -270,8 +270,10 @@ squirrel populations</h1>
 
 
 <pre class="r"><code>sapply(c(&quot;ggplot2&quot;, &quot;tidyr&quot;, &quot;tibble&quot;, &quot;dplyr&quot;, &quot;purrr&quot;, &quot;RColorBrewer&quot;), require, character.only = TRUE)</code></pre>
-<pre><code>##      ggplot2        tidyr       tibble        dplyr        purrr RColorBrewer 
-##         TRUE         TRUE         TRUE         TRUE         TRUE         TRUE</code></pre>
+<pre><code>##      ggplot2        tidyr       tibble        dplyr        purrr 
+##         TRUE         TRUE         TRUE         TRUE         TRUE 
+## RColorBrewer 
+##         TRUE</code></pre>
 <pre class="r"><code>source(&quot;utils.R&quot;) # plain R script containing the functions we wrote in the Wright-Fisher section
 set.seed(23)</code></pre>
 <p>Here we will use our Wright-Fisher simulations to simulate the
@@ -333,9 +335,31 @@ ggplot(plotdf, aes(x = i, y = j, fill = freq)) +
                                label = rev(j))) +
   scale_fill_distiller(palette = &quot;Spectral&quot;) +
   theme_classic()</code></pre>
-<p><img src="DataGeneration_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="DataGeneration_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>Saving these frequencies so they can be referenced permanently:</p>
 <pre class="r"><code># save(X_B, X_T, X_M, X_S, X_F, file = &quot;Frequencies.RData&quot;)</code></pre>
+<p>Visualizing example alleles in all 5 college populations:</p>
+<p>Example of an allele that remained segregating in most
+populations:</p>
+<pre class="r"><code>sample_allele &lt;- which(X_B[,200] == .22)
+plot(x = 1:g, y = X_B[sample_allele, ], type = &quot;l&quot;, col = &quot;#EE2C24&quot;,
+     xlab = &quot;Generation&quot;, ylab = &quot;allele frequency&quot;, ylim = c(0, 1),
+     main = paste(&quot;Locus&quot;, nrow(X_B) - sample_allele + 1))
+lines(x = 1:g, y = X_T[sample_allele, ], type = &quot;l&quot;, col = &quot;#CC6E28&quot;)
+lines(x = 1:g, y = X_M[sample_allele, ], type = &quot;l&quot;, col = &quot;#F7CE0E&quot;)
+lines(x = 1:g, y = X_S[sample_allele, ], type = &quot;l&quot;, col = &quot;#2300F6&quot;)
+lines(x = 1:g, y = X_F[sample_allele, ], type = &quot;l&quot;, col = &quot;#007C46&quot;)</code></pre>
+<p><img src="DataGeneration_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>Example of an allele that was lost from all but BU:</p>
+<pre class="r"><code>sample_allele &lt;- which(X_B[,200] == .16)
+plot(x = 1:g, y = X_B[sample_allele, ], type = &quot;l&quot;, col = &quot;#EE2C24&quot;,
+     xlab = &quot;Generation&quot;, ylab = &quot;allele frequency&quot;, ylim = c(0, 1),
+     main = paste(&quot;Locus&quot;, nrow(X_B) - sample_allele + 1))
+lines(x = 1:g, y = X_T[sample_allele, ], type = &quot;l&quot;, col = &quot;#CC6E28&quot;)
+lines(x = 1:g, y = X_M[sample_allele, ], type = &quot;l&quot;, col = &quot;#F7CE0E&quot;)
+lines(x = 1:g, y = X_S[sample_allele, ], type = &quot;l&quot;, col = &quot;#2300F6&quot;)
+lines(x = 1:g, y = X_F[sample_allele, ], type = &quot;l&quot;, col = &quot;#007C46&quot;)</code></pre>
+<p><img src="DataGeneration_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 </div>
 
 

@@ -331,7 +331,7 @@ iteratively until we reach our final generation.</p>
   # Add previous generation&#39;s allele frequencies to X
   .X_new &lt;- cbind(.X, .p, deparse.level = 0)
   # check if we&#39;re at the final generation
-  if (.g_now == .g) {
+  if (.g_now &gt;= .g) {
     return(.X_new)
   }
   # if not, update allele freqs for the next generation
@@ -355,8 +355,8 @@ common when our population initially bottlenecks onto the different
 college campuses, as we will see when we run the simulation.</p>
 <pre class="r"><code>m &lt;- 10 # 10 alleles
 runif(n = m, min = 0, max = 0.25) # their rare frequencies in the meta-population</code></pre>
-<pre><code>##  [1] 0.05748024 0.07985892 0.03865539 0.15279361 0.17592577 0.02991744 0.10404113
-##  [8] 0.24246303 0.09652441 0.20635422</code></pre>
+<pre><code>##  [1] 0.05748024 0.07985892 0.03865539 0.15279361 0.17592577 0.02991744
+##  [7] 0.10404113 0.24246303 0.09652441 0.20635422</code></pre>
 </div>
 <div id="simulation" class="section level2">
 <h2>Simulation</h2>
