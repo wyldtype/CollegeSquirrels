@@ -2,6 +2,10 @@
 .Rhistory
 .Rapp.history
 
+# image files not for website
+*.pdf
+*.jpg
+
 # Session Data files
 *.RData
 .RDataTmp
@@ -50,3 +54,6 @@ rsconnect/
 
 # What even is this
 *.DS_Store
+
+# Accompanying presentation
+*.key
