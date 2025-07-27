@@ -11,7 +11,7 @@
 
 
 
-<title>My Website</title>
+<title>Why are college squirrels so weird?</title>
 
 <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -238,7 +238,7 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">My Website</a>
+      <a class="navbar-brand" href="index.html">College Squirrels</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -246,7 +246,10 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="about.html">About</a>
+  <a href="WrightFisher.html">Wright-Fisher Simulations</a>
+</li>
+<li>
+  <a href="DataGeneration.html">Creating our Datasets</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -260,22 +263,33 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">My Website</h1>
+<h1 class="title toc-ignore">Why are college squirrels so weird?</h1>
 
 </div>
 
 
-<p>Hello, Website!</p>
-<p>For more information about simple R Markdown websites, please read
-the documentation at <a
-href="https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html"
-class="uri">https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html</a>.</p>
-<p>Please also note that simple R Markdown sites are <em>not</em> based
-on <strong>blogdown</strong>. They are probably good for websites with
-only a few Rmd documents. For larger-scale and more sophisticated
-websites (such as blogs), you may want to use <strong>blogdown</strong>
-instead: <a href="https://github.com/rstudio/blogdown"
-class="uri">https://github.com/rstudio/blogdown</a>.</p>
+<p><img src="images/weird_squirrels.png" width="50%" style="display: block; margin: auto;" />
+(Lehtinen et al. 2019, photos from iNaturalist and J. Furey)</p>
+<p>Squirrels on college campuses often have weird coat patterns. Why?
+The short answer is their small population sizes lead to rare variants
+becoming common, and certain rare variants cause weird colors. For
+example, a deletion in a 24bp chunk of the melanocortin 1 receptor is
+associated with black squirrel morphs of BOTH the eastern fox and
+eastern gray squirrel species, suggesting there was introgression
+between them (McRobie et al. 2019).</p>
+<p>This 24bp deletion is an example of a “rare variant” that appears to
+have become relatively common in certain squirrel populations, likely
+due to random chance aka drift (Lehtinen et a. 2019). When these rare
+variants becomes frequent enough that homozygous individuals start to
+arise, we begin to see the distinct coat color phenotypes. Here’s an
+example of a second rare variant (this time a single bp missense
+mutation) that also causes black coat color:</p>
+<p><img src="images/McRobie_MCR1recessive.png" width="50%" style="display: block; margin: auto;" />
+(McRobie et al. BMC Evolutionary Biology, 2019)</p>
+<p>We can describe how we might end up with weird squirrels by modeling
+the evolutionary processes that got us here. We will use the
+Wright-Fisher model to describe how alleles change frequency in
+populations over generations (next page).</p>
 
 
 

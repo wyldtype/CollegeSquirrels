@@ -1,9 +1,11 @@
 name: "college-squirrels"
 output_dir: docs
 navbar:
-  title: "Why do squirrels on college campuses look so weird?"
+  title: "College Squirrels"
   left:
     - text: "Home"
       href: index.html
     - text: "Wright-Fisher Simulations"
       href: WrightFisher.html
+    - text: "Creating our Datasets"
+      href: DataGeneration.html
