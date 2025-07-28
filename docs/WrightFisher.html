@@ -320,11 +320,11 @@ function to do that:</p>
 <pre class="r"><code>N &lt;- 100 # 100 individuals
 p_j &lt;- 0.7 # 70% of alleles at this site are a in this population
 updateFreq(.N = N, .p = p_j)</code></pre>
-<pre><code>## [1] 0.73</code></pre>
+<pre><code>## [1] 0.695</code></pre>
 <p>And several loci, given as a vector of their frequencies</p>
 <pre class="r"><code>p_j &lt;- c(0.7, 0.1, 0.99)
 updateFreq(.N = N, .p = p_j)</code></pre>
-<pre><code>## [1] 0.685 0.105 0.990</code></pre>
+<pre><code>## [1] 0.755 0.125 0.990</code></pre>
 <p>Now we can create a loop that produces these allele frequencies
 iteratively until we reach our final generation.</p>
 <pre class="r"><code>wrightFisher &lt;- function(.N, .p, .X = NULL, .g = 500, .g_now = 1) {
@@ -342,10 +342,10 @@ iteratively until we reach our final generation.</p>
 }</code></pre>
 <p>Here’s what the output looks like:</p>
 <pre class="r"><code>wrightFisher(.N = 100, .p = c(0.7, 0.1, 0.99), .g = 10)</code></pre>
-<pre><code>##      [,1] [,2]  [,3]  [,4]  [,5] [,6]  [,7]  [,8]  [,9] [,10]
-## [1,] 0.70 0.73 0.700 0.705 0.685 0.74 0.725 0.725 0.730 0.670
-## [2,] 0.10 0.14 0.155 0.145 0.185 0.25 0.280 0.285 0.295 0.340
-## [3,] 0.99 0.99 0.990 0.970 0.960 0.98 0.980 0.985 0.975 0.995</code></pre>
+<pre><code>##      [,1]  [,2]  [,3]  [,4]  [,5] [,6]  [,7]  [,8] [,9] [,10]
+## [1,] 0.70 0.705 0.675 0.685 0.695 0.71 0.745 0.760 0.78 0.755
+## [2,] 0.10 0.095 0.095 0.135 0.160 0.20 0.165 0.165 0.17 0.195
+## [3,] 0.99 0.990 0.995 1.000 1.000 1.00 1.000 1.000 1.00 1.000</code></pre>
 <p>The last thing we need before running the full simulation is our
 starting allele frequencies for our college squirrels. We’re assuming
 that we are following a set of rare variants that were all present at
@@ -355,8 +355,8 @@ common when our population initially bottlenecks onto the different
 college campuses, as we will see when we run the simulation.</p>
 <pre class="r"><code>m &lt;- 10 # 10 alleles
 runif(n = m, min = 0, max = 0.25) # their rare frequencies in the meta-population</code></pre>
-<pre><code>##  [1] 0.05748024 0.07985892 0.03865539 0.15279361 0.17592577 0.02991744
-##  [7] 0.10404113 0.24246303 0.09652441 0.20635422</code></pre>
+<pre><code>##  [1] 0.2134458640 0.1129660892 0.0945910107 0.0939691439 0.0005666871
+##  [6] 0.0628317850 0.2482719144 0.0935720032 0.1086895787 0.0438247038</code></pre>
 </div>
 <div id="simulation" class="section level2">
 <h2>Simulation</h2>

@@ -302,7 +302,9 @@ X_M &lt;- wrightFisher(.N = N, .p = p_0, .g = g)
 # Syracuse
 X_S &lt;- wrightFisher(.N = N, .p = p_0, .g = g)
 # University of Florida
-X_F &lt;- wrightFisher(.N = N, .p = p_0, .g = g)</code></pre>
+X_F &lt;- wrightFisher(.N = N, .p = p_0, .g = g)
+# Wild population
+X_Wild &lt;- wrightFisher(.N = N*100, .p = p_0, .g = g)</code></pre>
 <p>How many alleles are non-zero in at least one population?</p>
 <pre class="r"><code>sum((X_B[, g] &gt; 0) | (X_T[, g] &gt; 0) | (X_M[, g] &gt; 0) | 
       (X_S[, g] &gt; 0) | (X_F[, g] &gt; 0))</code></pre>
@@ -318,7 +320,8 @@ length(zero_idxs)</code></pre>
 X_T &lt;- X_T[-zero_idxs,]
 X_M &lt;- X_M[-zero_idxs,]
 X_S &lt;- X_S[-zero_idxs,]
-X_F &lt;- X_F[-zero_idxs,]</code></pre>
+X_F &lt;- X_F[-zero_idxs,]
+X_Wild &lt;- X_Wild[-zero_idxs,]</code></pre>
 <p>Here are our final datasets for the classroom exercise, colored by
 frequency.</p>
 <pre class="r"><code>nAlleles &lt;- m - length(zero_idxs)
@@ -335,7 +338,7 @@ ggplot(plotdf, aes(x = i, y = j, fill = freq)) +
                                label = rev(j))) +
   scale_fill_distiller(palette = &quot;Spectral&quot;) +
   theme_classic()</code></pre>
-<p><img src="DataGeneration_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="DataGeneration_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Saving these frequencies so they can be referenced permanently:</p>
 <pre class="r"><code># save(X_B, X_T, X_M, X_S, X_F, file = &quot;Frequencies.RData&quot;)</code></pre>
 <p>Visualizing example alleles in all 5 college populations:</p>
@@ -349,7 +352,7 @@ lines(x = 1:g, y = X_T[sample_allele, ], type = &quot;l&quot;, col = &quot;#CC6E
 lines(x = 1:g, y = X_M[sample_allele, ], type = &quot;l&quot;, col = &quot;#F7CE0E&quot;)
 lines(x = 1:g, y = X_S[sample_allele, ], type = &quot;l&quot;, col = &quot;#2300F6&quot;)
 lines(x = 1:g, y = X_F[sample_allele, ], type = &quot;l&quot;, col = &quot;#007C46&quot;)</code></pre>
-<p><img src="DataGeneration_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="DataGeneration_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>Example of an allele that was lost from all but BU:</p>
 <pre class="r"><code>sample_allele &lt;- which(X_B[,200] == .16)
 plot(x = 1:g, y = X_B[sample_allele, ], type = &quot;l&quot;, col = &quot;#EE2C24&quot;,
@@ -359,7 +362,29 @@ lines(x = 1:g, y = X_T[sample_allele, ], type = &quot;l&quot;, col = &quot;#CC6E
 lines(x = 1:g, y = X_M[sample_allele, ], type = &quot;l&quot;, col = &quot;#F7CE0E&quot;)
 lines(x = 1:g, y = X_S[sample_allele, ], type = &quot;l&quot;, col = &quot;#2300F6&quot;)
 lines(x = 1:g, y = X_F[sample_allele, ], type = &quot;l&quot;, col = &quot;#007C46&quot;)</code></pre>
-<p><img src="DataGeneration_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="DataGeneration_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Random wild alleles:</p>
+<p>Example of an allele that remained segregating in most
+populations:</p>
+<pre class="r"><code>sample_alleles &lt;- sample(c(1:nrow(X_Wild)), size = 5)
+plot(x = 1:g, y = X_Wild[sample_alleles[1], ], type = &quot;l&quot;, col = &quot;red&quot;,
+     xlab = &quot;Generation&quot;, ylab = &quot;allele frequency&quot;, ylim = c(0, 1),
+     main = &quot;5 Alleles in Wild Population (N = 10,000)&quot;)
+lines(x = 1:g, y = X_Wild[sample_alleles[2], ], type = &quot;l&quot;, col = &quot;green&quot;)
+lines(x = 1:g, y = X_Wild[sample_alleles[3], ], type = &quot;l&quot;, col = &quot;blue&quot;)
+lines(x = 1:g, y = X_Wild[sample_alleles[4], ], type = &quot;l&quot;, col = &quot;yellow&quot;)
+lines(x = 1:g, y = X_Wild[sample_alleles[5], ], type = &quot;l&quot;, col = &quot;purple&quot;)</code></pre>
+<p><img src="DataGeneration_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Those same 5 alleles in the BU population:</p>
+<pre class="r"><code>plot(x = 1:g, y = X_B[sample_alleles[1], ], type = &quot;l&quot;, col = &quot;red&quot;,
+     xlab = &quot;Generation&quot;, ylab = &quot;allele frequency&quot;, ylim = c(0, 1),
+     main = &quot;5 Alleles in BU Population (N = 100)&quot;)
+lines(x = 1:g, y = X_B[sample_alleles[2], ], type = &quot;l&quot;, col = &quot;green&quot;)
+lines(x = 1:g, y = X_B[sample_alleles[3], ], type = &quot;l&quot;, col = &quot;blue&quot;)
+lines(x = 1:g, y = X_B[sample_alleles[4], ], type = &quot;l&quot;, col = &quot;yellow&quot;)
+lines(x = 1:g, y = X_B[sample_alleles[5], ], type = &quot;l&quot;, col = &quot;purple&quot;)</code></pre>
+<p><img src="DataGeneration_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+```</p>
 </div>
 
 

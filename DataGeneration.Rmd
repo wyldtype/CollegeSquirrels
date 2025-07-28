@@ -32,6 +32,8 @@ X_M <- wrightFisher(.N = N, .p = p_0, .g = g)
 X_S <- wrightFisher(.N = N, .p = p_0, .g = g)
 # University of Florida
 X_F <- wrightFisher(.N = N, .p = p_0, .g = g)
+# Wild population
+X_Wild <- wrightFisher(.N = N*100, .p = p_0, .g = g)
 ```
 How many alleles are non-zero in at least one population?
 ```{r}
@@ -53,6 +55,7 @@ X_T <- X_T[-zero_idxs,]
 X_M <- X_M[-zero_idxs,]
 X_S <- X_S[-zero_idxs,]
 X_F <- X_F[-zero_idxs,]
+X_Wild <- X_Wild[-zero_idxs,]
 ```
 
 Here are our final datasets for the classroom exercise, colored by frequency.
@@ -106,4 +109,30 @@ lines(x = 1:g, y = X_S[sample_allele, ], type = "l", col = "#2300F6")
 lines(x = 1:g, y = X_F[sample_allele, ], type = "l", col = "#007C46")
 ```
 
+Random wild alleles:
+
+Example of an allele that remained segregating in most populations:
+```{r}
+sample_alleles <- sample(c(1:nrow(X_Wild)), size = 5)
+plot(x = 1:g, y = X_Wild[sample_alleles[1], ], type = "l", col = "red",
+     xlab = "Generation", ylab = "allele frequency", ylim = c(0, 1),
+     main = "5 Alleles in Wild Population (N = 10,000)")
+lines(x = 1:g, y = X_Wild[sample_alleles[2], ], type = "l", col = "green")
+lines(x = 1:g, y = X_Wild[sample_alleles[3], ], type = "l", col = "blue")
+lines(x = 1:g, y = X_Wild[sample_alleles[4], ], type = "l", col = "yellow")
+lines(x = 1:g, y = X_Wild[sample_alleles[5], ], type = "l", col = "purple")
+```
+
+Those same 5 alleles in the BU population:
+
+```{r}
+plot(x = 1:g, y = X_B[sample_alleles[1], ], type = "l", col = "red",
+     xlab = "Generation", ylab = "allele frequency", ylim = c(0, 1),
+     main = "5 Alleles in BU Population (N = 100)")
+lines(x = 1:g, y = X_B[sample_alleles[2], ], type = "l", col = "green")
+lines(x = 1:g, y = X_B[sample_alleles[3], ], type = "l", col = "blue")
+lines(x = 1:g, y = X_B[sample_alleles[4], ], type = "l", col = "yellow")
+lines(x = 1:g, y = X_B[sample_alleles[5], ], type = "l", col = "purple")
+```
+```
 
